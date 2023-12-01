@@ -10,8 +10,9 @@
 - http://localhost:5000/food/delete/:id
 ## endpoints front-end :
 - http://localhost:3000/ (landing page) 
-- http://localhost:3000/addfood (add food as admin) 
+- http://localhost:3000/addfood (add food as admin)
 
+## Description : 
 Building a restaurant app involves frontend and backend development, integrating with cloud services like **Cloudinary** for image uploads,
 and designing a user-friendly and visually appealing interface with custom CSS. 
 Test your application thoroughly to ensure functionality and a positive user experience.
