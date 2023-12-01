@@ -1,0 +1,22 @@
+.add-food-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.add-food-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+}
+
+button {
+  margin-top: 10px;
+}
