@@ -50,7 +50,7 @@ const Menu = () => {
         {Array.isArray(foods) && foods.length > 0 ? (
           foods.map((food) => (
             <div key={food._id} className="card">
-              <div className="card-img" style={{backgroundImage: food.image}}></div>
+              <div className="card-img" style={{backgroundImage: `url(${food.image})`}}></div>
               {/* <img className="card-img" src={food.image} alt="Avatar" /> */}
               <div className="container">
                 <p>{food.title}</p>

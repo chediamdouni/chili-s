@@ -117,12 +117,6 @@ body {
   padding-bottom: 3rem;
 }
 .grid-container {
-  /* margin-top: 50px;
-  display: grid;
-  grid-template-columns: "" ;
-  grid-column-gap: 50px;
-  grid-row-gap: 10px;
-  padding: 10px; */
   display: flex;
   gap: 50px;
   flex-wrap: wrap;
@@ -153,13 +147,12 @@ body {
 }
 .About-section{
   background-image: url('./Assets/background.png');
-  height: max-content;
+  background-repeat: no-repeat;
+  background-size: cover;
   margin:50px;
-  position: relative;
-  text-align: center;
   border-radius: 60px;
 }
-.About-title{
+.About-title{ 
   padding: 20px ;
   font-size: 40px;
   color :white ;
@@ -168,17 +161,20 @@ body {
   text-align: center;
 }
 .About-form-group{
-  margin: 30px;
-  display: flex;
+    margin: 30px;
+    display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;  
 }
 .About-img{
-  border-radius: 95px;
+  /* 
   margin-left: 20px;
   width: 340px;
-  padding: 4px 50px;
+  padding: 4px 50px; */
+  border-radius: 80px;
+  width: 50%;
+  height:200px;
 }
 .About-form {
   display: flex;
