@@ -1,5 +1,5 @@
 import About from "./About";
-import Home from "./Home";
+import Home from "./homee";
 import Menu from "./menu";
 
 const Layout = () => {
