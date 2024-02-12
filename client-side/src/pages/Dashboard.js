@@ -2,10 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import chil from "../Assets/chil.png";
 import logg from "../Assets/logg.png";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [foods, setFoods] = useState([]);
-
   useEffect(() => {
     fetchFoods();
   }, []);
@@ -45,10 +45,12 @@ const Dashboard = () => {
           {Array.isArray(foods) && foods.length > 0 ? (
             foods.map((food) => (
               <div key={food._id} className="card">
+                <Link to={`/edit-food/${food._id}`}>
                 <div
                   className="card-img"
                   style={{ backgroundImage: `url(${food.image})` }}
                 ></div>
+                </Link>
                 <div className="container">
                   <p style={{ color: "red" }}>{food.title}</p>
                   {/* <p>{food.description}</p> */}
@@ -75,10 +77,12 @@ const Dashboard = () => {
           {Array.isArray(foods) && foods.length > 0 ? (
             foods.map((food) => (
               <div key={food._id} className="card">
+                <Link to={`/edit-food/${food._id}`}>
                 <div
                   className="card-img"
                   style={{ backgroundImage: `url(${food.image})` }}
                 ></div>
+                </Link>
                 {/* <img className="card-img" src={food.image} alt="Avatar" /> */}
                 <div className="container">
                   <p>{food.title}</p>

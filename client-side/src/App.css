@@ -282,7 +282,7 @@ span a {
   margin-left: 20px;
   width: 340px;
   padding: 4px 50px; */
-  border-radius: 80px;
+  border-radius: 50%;
   width: 50%;
   height:200px;
 }

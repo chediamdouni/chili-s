@@ -1,16 +1,33 @@
 import axios from "axios";
-import React, { useState } from "react";
-import "./AddFood.css";
-import { Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./updateFood.css";
+import { useNavigate } from "react-router-dom";
 
-const AddFood = () => {
+const UpdateFood = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     title: "",
     category: "",
     prix: "",
     description: "",
-    image: null,
+    image: "null",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/food/${id}`);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching food data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +36,7 @@ const AddFood = () => {
       [name]: value,
     }));
   };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setData((prevData) => ({
@@ -26,42 +44,47 @@ const AddFood = () => {
       image: file,
     }));
   };
+  const handleButtonClick = () => {
+    navigate("/food-list");
+  };
   const handleSubmit = async (e) => {
-    console.log(data.image);
     e.preventDefault();
     var fd = new FormData();
     fd.append("upload_preset", "mafud2x1");
-    fd.append("tags", "browser_upload"); 
+    fd.append("tags", "browser_upload");
     fd.append("file", data.image);
+
     const config = {
       headers: { "X-Requested-With": "XMLHttpRequest" },
     };
+
     const response1 = await axios.post(
       "https://api.cloudinary.com/v1_1/dnwtkw5gm/image/upload",
       fd,
       config
     );
-    console.log(response1);
+
     if (response1.data) {
-      console.log(response1.data);
       try {
-        data.image = response1.data.url //url mel cloudinary 
-        const response = await axios.post("http://localhost:5000/food/new", {
-          ...data
-        });
-        // Handle the success response
-        console.log("Food added successfully:", response.data);
+        data.image = response1.data.url;
+        const response = await axios.put(
+          `http://localhost:5000/food/update/${id}`,
+          {
+            ...data,
+          }
+        );
+
+        console.log("Food updated successfully:", response.data);
       } catch (error) {
-        // Handle the error response
-        console.error("Error adding food:", error.message);
+        console.error("Error updating food:", error.message);
       }
     }
   };
 
   return (
-    <div className="add-food-container">
-      <h2>Add Food</h2>
-      <form onSubmit={handleSubmit} className="add-food-form">
+    <div>
+      <h2>Update Food</h2>
+      <form onSubmit={handleSubmit}>
         <label>
           Title:
           <input
@@ -106,9 +129,12 @@ const AddFood = () => {
             onChange={handleImageChange}
           />
         </label>
-        <button type="submit">Add Food</button>
+        <button type="submit">Update Food</button>
       </form>
+      <button onClick={handleButtonClick}>
+        retour en arriere </button>
     </div>
   );
 };
-export default AddFood;
+
+export default UpdateFood;
